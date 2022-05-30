@@ -1,9 +1,8 @@
 <?php
 
-Flight::route('/', array('MainController', 'index'));
+Flight::route('/', array('MainController', 'runApp'));
+Flight::route('/check', array('MainController', 'check'));
 
-Flight::route('/hello', function(){
-    echo "Hello!";
-});
- 
-Flight::route('/hello/@name', array('MainController', 'test'));
+
+
+
