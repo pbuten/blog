@@ -1,15 +1,24 @@
 <?php
 
+include('BaseModel.php');
+
 class Post
 {
 	public $title;
 	public $content;
 	public $author;
 	private $db;
+	private $base;
 
 	public function __construct()
 	{
+		$this->base = new BaseModel('posts');
 		$this->db = Flight::db();
+	}
+
+	public function displayAll()
+	{
+		return $this->base->findAll();
 	}
 
 	public function addPost()
@@ -19,24 +28,20 @@ class Post
 
 	public function getById($id)
 	{
-		$query = $this->db->query("SELECT * FROM posts WHERE id = '$id'");
-		$row = mysqli_fetch_assoc($query);
-		return $row;
+		return $this->base->findById($id);
 	}
 
 	public function updateById($id)
 	{
-		$query = $this->db->query("UPDATE posts SET title = '$this->title', content = '$this->content', author = '$this->author' WHERE id = '$id'");
+		$this->base->updateWhere($id, 'title', $this->title);
+		$this->base->updateWhere($id, 'content', $this->content);
+		$this->base->updateWhere($id, 'author', $this->author);
 	}
 
 	public function deletePost($id)
 	{
-		$query = $this->db->query("DELETE FROM posts WHERE id = '$id'");
+		$this->base->deleteById($id);
 	}
 
-	public function displayAll()
-	{
-		$query = $this->db->query("SELECT * FROM posts");
-		return $query->fetch_all(MYSQLI_ASSOC);
-	}
+
 }

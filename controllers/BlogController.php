@@ -1,6 +1,5 @@
 <?php
 include('./models/Post.php');
-
 class BlogController
 {
 	public static function add()
@@ -22,7 +21,6 @@ class BlogController
 
 	public static function display($id)
 	{
-		$request = Flight::request();
 		$post = new Post();
 		$post_data = $post->getById($id);
 
