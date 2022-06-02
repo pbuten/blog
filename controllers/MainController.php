@@ -9,7 +9,7 @@ class MainController
 
 	public static function runApp ()
 	{
-		Flight::view()->display('home.html', []);
+		Flight::view()->display('home.php', []);
 	}
 
 	public static function check ()

@@ -3,11 +3,14 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
 include dirname(__FILE__) . '/vendor/autoload.php';
+include 'app/etc/env.php';
+
+session_start();
 
 /**
  * Connect to the db
  */
-Flight::register('db', 'mysqli', array('localhost', 'admin', 'admin', 'blog'));
+//Flight::register('db', 'mysqli', array('localhost', 'admin', 'admin', 'blog'));
 
 /**
  * Initiate Twig, and register to Flight
