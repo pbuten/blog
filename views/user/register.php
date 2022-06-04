@@ -23,11 +23,6 @@
 							<input type="password" name="password" class="form-control"/>
 
 						</div>
-						<div class="form-row">
-							<label class="mt-3">Repeat password</label>
-							<input type="password" name="repassword" class="form-control"/>
-
-						</div>
 						<div class="form-row d-grid gap-2">
 							<input type="submit" class="btn btn-primary btn-block mt-3" value="Submit"/>
 

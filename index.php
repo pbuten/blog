@@ -36,5 +36,6 @@ Flight::path(dirname(__FILE__) . '/repositories');
  * Include routes
  */
 include dirname(__FILE__) . '/routes.php';
+include dirname(__FILE__) . '/routes_admin.php';
 
 Flight::start();

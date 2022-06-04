@@ -13,19 +13,20 @@ class AuthController
 			->findOneby(['email' => $email]);
 
 		if (md5($password) == $user->getPassword()) {
-			self::setSession($user->getId(), $email, md5($password));
-//			echo 'Welcome back, Master!   ' . '<a href='/'> Go home</a>';
+			self::setSession($user->getId(), $email, md5($password), $user->getRole());
+			echo 'Welcome back';
 		} else {
 			echo 'Wrong password';
 		}
 
 	}
 
-	public static function setSession($id, $email, $password)
+	public static function setSession($id, $email, $password, $role)
 	{
 		$_SESSION['id'] = $id;
 		$_SESSION['password'] = $password;
 		$_SESSION['email'] = $email;
+		$_SESSION['role'] = $role;
 
 	}
 
@@ -34,6 +35,7 @@ class AuthController
 		unset($_SESSION['id']);
 		unset($_SESSION['email']);
 		unset($_SESSION['password']);
+		unset($_SESSION['role']);
 
 	}
 

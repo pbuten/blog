@@ -29,6 +29,12 @@ class User
 	protected $password;
 
 	/**
+	 * @ORM\Column(type="integer")
+	 * @return number
+	 */
+	protected $role;
+
+	/**
 	 * @return string
 	 */
 	public function getPassword(): string
@@ -66,6 +72,22 @@ class User
 	public function getEmail(): string
 	{
 		return $this->email;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getRole()
+	{
+		return $this->role;
+	}
+
+	/**
+	 * @param integer $role
+	 */
+	public function setRole($role)
+	{
+		$this->role = $role;
 	}
 
 }

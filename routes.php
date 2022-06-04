@@ -18,6 +18,3 @@ Flight::route('/post/delete/@id', function($id) {BlogController::delete($id);});
 
 
 
-
-
-
