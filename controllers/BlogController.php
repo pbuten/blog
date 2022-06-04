@@ -1,18 +1,20 @@
 <?php
-include('./models/Post.php');
+include('./repositories/PostRepository.php');
 
 class BlogController
 {
+
 	public static function add()
 	{
 		$request = Flight::request();
 		$message = '';
 		if (!empty ($request->data->content)) {
-			$post = new Post();
-			$post->title = $request->data->title;
-			$post->content = $request->data->content;
-			$post->author = $request->data->author;
-			$post->addPost();
+			PostRepository::add([
+				'title' => $request->data->title,
+				'content' => $request->data->content,
+				'author' => $request->data->author
+		]);
+
 			$message = 'Post was successfully added';
 		}
 		Flight::view()->display('post/add.php', [
@@ -22,7 +24,6 @@ class BlogController
 
 	public static function display($id)
 	{
-		$request = Flight::request();
 		$post = new Post();
 		$post_data = $post->getById($id);
 
@@ -36,24 +37,24 @@ class BlogController
 
 	public static function delete($id)
 	{
-		$post = new Post();
-		$post_data = $post->deletePost($id);
+		PostRepository::remove($id);
 		echo 'Post was successfully deleted';
 	}
 
 	public static function update($id)
 	{
 		$request = Flight::request();
-		$post = new Post();
-		$post_data = $post->getById($id);
+		$post_data = PostRepository::get($id);
 		$message = '';
 
 		if (!empty ($request->data->content)) {
-			$post_edited = new Post();
-			$post_edited->title = $request->data->title;
-			$post_edited->content = $request->data->content;
-			$post_edited->author = $request->data->author;
-			$post_edited->updateById($id);
+			PostRepository::update([
+				'id' => $id,
+				'title' => $request->data->title,
+				'content' => $request->data->content,
+				'author' => $request->data->author
+			]);
+
 			$message = 'Post was successfully updated';
 		}
 		Flight::view()->display('post/update.php', [
@@ -68,8 +69,7 @@ class BlogController
 
 	public static function list()
 	{
-		$posts = new Post();
-		$posts_list = $posts->displayAll();
+		$posts_list = PostRepository::listAll();
 		Flight::view()->display('post/list.php', [
 			'posts_list' => $posts_list
 		]);
