@@ -1,6 +1,8 @@
 <?php
-include("./app/etc/env.php");
-include("./entity/User.php");
+
+namespace controllers;
+
+use Flight;
 
 class AuthController
 {

@@ -10,7 +10,7 @@ session_start();
 /**
  * Connect to the db
  */
-//Flight::register('db', 'mysqli', array('localhost', 'admin', 'admin', 'blog'));
+Flight::register('db', 'mysqli', array('localhost', 'admin', 'admin', 'blog'));
 
 /**
  * Initiate Twig, and register to Flight

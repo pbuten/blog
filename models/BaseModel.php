@@ -1,5 +1,6 @@
 <?php
-
+namespace models;
+use Flight;
 use NilPortugues\Sql\QueryBuilder\Builder\GenericBuilder;
 
 class BaseModel

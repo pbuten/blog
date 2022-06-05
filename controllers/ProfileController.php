@@ -1,7 +1,9 @@
 <?php
-include("./app/etc/env.php");
-include("./entity/User.php");
-include "ValidateData.php";
+
+namespace controllers;
+
+use Flight;
+
 
 class ProfileController
 {
@@ -20,7 +22,7 @@ class ProfileController
 	public static function view()
 	{
 		$user_id = new ProfileController();
-		$user = $GLOBALS['$entityManager']->find('User', $user_id->id);
+		$user = $GLOBALS['$entityManager']->find('entity\User', $user_id->id);
 
 		$userData = [
 			'id' => $user->getId(),
@@ -34,7 +36,7 @@ class ProfileController
 	{
 
 		$user_id = new ProfileController();
-		$user = $GLOBALS['$entityManager']->find('User', $user_id->id);
+		$user = $GLOBALS['$entityManager']->find('entity\User', $user_id->id);
 
 		$request = Flight::request();
 		$password = $request->data->password;

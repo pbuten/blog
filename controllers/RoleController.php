@@ -1,7 +1,5 @@
 <?php
-include("./app/etc/env.php");
-include("./entity/Role.php");
-//include("./entity/User.php");
+namespace controllers;
 
 class RoleController
 {

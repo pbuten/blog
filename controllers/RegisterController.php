@@ -1,6 +1,7 @@
 <?php
-include("./app/etc/env.php");
-include('ValidateData.php');
+namespace controllers;
+
+use Flight;
 
 class RegisterController
 {

@@ -1,5 +1,10 @@
 <?php
-include('./repositories/PostRepository.php');
+
+namespace controllers;
+
+use Flight;
+use models\Post;
+use repositories\PostRepository;
 
 class BlogController
 {
