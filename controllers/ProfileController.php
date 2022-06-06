@@ -33,9 +33,9 @@ class ProfileController
 		if ($profile == null) {
 			self::setPhoto('media/user-placeholder.png');
 			$userData += ['photo' => 'media/user-placeholder.png'];
+		} else {
+			$userData += ['photo' => $profile->getPhoto()];
 		}
-
-
 		Flight::view()->display('user/profile.php', ['userData' => $userData, 'isAuth' => UserController::isAuth(), 'session' => $_SESSION]);
 	}
 
