@@ -15,7 +15,9 @@ class AdminUsersController
 	public static function create()
 	{
 		AdminController::checkIfAdmin();
-		RegisterController::registerUser();
+		if (Flight::request()->data->password != null) {
+			RegisterController::registerUser();
+		}
 		Flight::view()->display('admin/user/create.php', []);
 	}
 

@@ -18,10 +18,9 @@ class AuthController
 
 		if (md5($password) == $user->getPassword()) {
 			self::setSession($user->getId(), $email, md5($password), $user->getRole());
-			echo 'Welcome back';
 		} else {
-			echo 'Wrong password';
 		}
+		Flight::view()->display('user/logged.php', ['isAuth' => UserController::isAuth(), 'session' => $_SESSION]);
 
 	}
 
@@ -40,6 +39,8 @@ class AuthController
 		unset($_SESSION['email']);
 		unset($_SESSION['password']);
 		unset($_SESSION['role']);
+		Flight::view()->display('user/byebye.php', []);
+
 
 	}
 

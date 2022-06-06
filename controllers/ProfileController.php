@@ -49,6 +49,9 @@ class ProfileController
 		$password = $request->data->password;
 		$email = $_SESSION['email'];
 		Flight::view()->display('user/passwordChange.php', ['isAuth' => UserController::isAuth(), 'session' => $_SESSION]);
+		if ($password == null) {
+			exit;
+		}
 
 		if (mb_strlen($password) < 3) {
 			echo 'Password should be at least 3 symbols';
