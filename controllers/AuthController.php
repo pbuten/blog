@@ -2,7 +2,9 @@
 
 namespace controllers;
 
+use entity\User;
 use Flight;
+
 
 class AuthController
 {
@@ -11,7 +13,7 @@ class AuthController
 		$request = Flight::request();
 		$email = $request->data->email;
 		$password = $request->data->password;
-		$user = $GLOBALS['$entityManager']->getRepository('User')
+		$user = $GLOBALS['$entityManager']->getRepository('entity\User')
 			->findOneby(['email' => $email]);
 
 		if (md5($password) == $user->getPassword()) {

@@ -1,16 +1,17 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport"
-		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
-</head>
-<body>
-<h1>{{title}}</h1>
-<h2 style="color: blue">{{author}}</h2>
-<p>{{content}}</p>
-</body>
-</html>
+{% extends "template.html" %}
 
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1>{{title}}</h1>
+                    <h2 style="color: blue">{{author}}</h2>
+                    <p>{{content}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
