@@ -1,5 +1,7 @@
 <?php
-include("./app/etc/env.php");
+namespace controllers;
+use Flight;
+use Throwable;
 
 class AdminController
 {
@@ -19,10 +21,10 @@ class AdminController
 		$request = Flight::request();
 		$email = $request->data->email;
 		$password = $request->data->password;
-		$user = $GLOBALS['$entityManager']->getRepository('User')
+		$user = $GLOBALS['$entityManager']->getRepository('entity\User')
 			->findOneby(['email' => $email]);
 
-		$role = $GLOBALS['$entityManager']->find('Role', $user->getRole());
+		$role = $GLOBALS['$entityManager']->find('entity\Role', $user->getRole());
 		$permissions = $role->getPermissions();
 		$permissions_arr = json_decode($permissions, true);
 

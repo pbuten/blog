@@ -1,5 +1,10 @@
 <?php
-include('./repositories/PostRepository.php');
+
+namespace controllers;
+
+use Flight;
+use models\Post;
+use repositories\PostRepository;
 
 class BlogController
 {
@@ -18,7 +23,7 @@ class BlogController
 			$message = 'Post was successfully added';
 		}
 		Flight::view()->display('post/add.php', [
-			'message' => $message
+			'message' => $message, 'isAuth' => UserController::isAuth()
 		]);
 	}
 
@@ -30,7 +35,8 @@ class BlogController
 		Flight::view()->display('post/display.php', [
 			'title' => $post_data['title'],
 			'content' => $post_data['content'],
-			'author' => $post_data['author']
+			'author' => $post_data['author'],
+			'isAuth' => UserController::isAuth()
 		]);
 
 	}
@@ -52,7 +58,8 @@ class BlogController
 				'id' => $id,
 				'title' => $request->data->title,
 				'content' => $request->data->content,
-				'author' => $request->data->author
+				'author' => $request->data->author,
+				'isAuth' => UserController::isAuth()
 			]);
 
 			$message = 'Post was successfully updated';
@@ -62,7 +69,8 @@ class BlogController
 			'content' => $post_data['content'],
 			'author' => $post_data['author'],
 			'message' => $message,
-			'id' => $id
+			'id' => $id,
+			'isAuth' => UserController::isAuth()
 		]);
 
 	}
@@ -71,7 +79,8 @@ class BlogController
 	{
 		$posts_list = PostRepository::listAll();
 		Flight::view()->display('post/list.php', [
-			'posts_list' => $posts_list
+			'posts_list' => $posts_list,
+			'isAuth' => UserController::isAuth()
 		]);
 	}
 }

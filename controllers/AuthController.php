@@ -1,6 +1,10 @@
 <?php
-include("./app/etc/env.php");
-include("./entity/User.php");
+
+namespace controllers;
+
+use entity\User;
+use Flight;
+
 
 class AuthController
 {
@@ -9,15 +13,14 @@ class AuthController
 		$request = Flight::request();
 		$email = $request->data->email;
 		$password = $request->data->password;
-		$user = $GLOBALS['$entityManager']->getRepository('User')
+		$user = $GLOBALS['$entityManager']->getRepository('entity\User')
 			->findOneby(['email' => $email]);
 
 		if (md5($password) == $user->getPassword()) {
 			self::setSession($user->getId(), $email, md5($password), $user->getRole());
-			echo 'Welcome back';
 		} else {
-			echo 'Wrong password';
 		}
+		Flight::view()->display('user/logged.php', ['isAuth' => UserController::isAuth(), 'session' => $_SESSION]);
 
 	}
 
@@ -36,6 +39,8 @@ class AuthController
 		unset($_SESSION['email']);
 		unset($_SESSION['password']);
 		unset($_SESSION['role']);
+		Flight::view()->display('user/byebye.php', []);
+
 
 	}
 

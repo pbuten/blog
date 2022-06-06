@@ -1,15 +1,9 @@
 <?php
-
-include('./models/Post.php');
+namespace repositories;
+use models\Post;
 
 class PostRepository
 {
-	private $model;
-	public function __construct()
-	{
-		$this->model = new Post();
-	}
-
 	public static function add($data)
 	{
 		$post = new Post();

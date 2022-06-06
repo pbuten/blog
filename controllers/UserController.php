@@ -1,5 +1,7 @@
 <?php
+namespace controllers;
 
+use Flight;
 
 class UserController
 {

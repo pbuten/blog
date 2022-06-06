@@ -1,29 +1,31 @@
 <?php
-include("./app/etc/env.php");
-include("./entity/User.php");
-include("RoleController.php");
+namespace controllers;
+
+use Flight;
 
 class AdminUsersController
 {
 	public static function list()
 	{
 		AdminController::checkIfAdmin();
-		$users = $GLOBALS['$entityManager']->getRepository('User')->findAll();
+		$users = $GLOBALS['$entityManager']->getRepository('entity\User')->findAll();
 		Flight::view()->display('admin/user/list.php', ['users' => $users]);
 	}
 
 	public static function create()
 	{
 		AdminController::checkIfAdmin();
-		RegisterController::registerUser();
+		if (Flight::request()->data->password != null) {
+			RegisterController::registerUser();
+		}
 		Flight::view()->display('admin/user/create.php', []);
 	}
 
 	public static function view($id)
 	{
 		AdminController::checkIfAdmin();
-		$user = $GLOBALS['$entityManager']->find('User', $id);
-		$roles = $GLOBALS['$entityManager']->getRepository('Role')->findAll();
+		$user = $GLOBALS['$entityManager']->find('entity\User', $id);
+		$roles = $GLOBALS['$entityManager']->getRepository('entity\Role')->findAll();
 		$userData = [
 			'id' => $user->getId(),
 			'email' => $user->getEmail(),
@@ -35,7 +37,7 @@ class AdminUsersController
 	public static function update($id)
 	{
 		AdminController::checkIfAdmin();
-		$user = $GLOBALS['$entityManager']->find('User', $id);
+		$user = $GLOBALS['$entityManager']->find('entity\User', $id);
 
 		$request = Flight::request();
 		$newUserData = [
@@ -64,7 +66,7 @@ class AdminUsersController
 	public static function delete($id)
 	{
 		AdminController::checkIfAdmin();
-		$user = $GLOBALS['$entityManager']->getRepository('User')
+		$user = $GLOBALS['$entityManager']->getRepository('entity\User')
 			->findOneby(['id' => $id]);
 		$GLOBALS['$entityManager']->remove($user);
 		$GLOBALS['$entityManager']->flush();

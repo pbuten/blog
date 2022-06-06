@@ -1,6 +1,7 @@
 <?php
+namespace models;
 
-include('BaseModel.php');
+use Flight;
 
 class Post
 {

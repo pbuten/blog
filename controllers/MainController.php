@@ -1,4 +1,7 @@
 <?php
+namespace controllers;
+
+use Flight;
 
 class MainController
 {
@@ -9,7 +12,7 @@ class MainController
 
 	public static function runApp ()
 	{
-		Flight::view()->display('home.php', []);
+		Flight::view()->display('home.php', ['isAuth' => UserController::isAuth()]);
 	}
 
 	public static function check ()

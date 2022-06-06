@@ -10,7 +10,7 @@ session_start();
 /**
  * Connect to the db
  */
-//Flight::register('db', 'mysqli', array('localhost', 'admin', 'admin', 'blog'));
+Flight::register('db', 'mysqli', array('localhost', 'admin', 'admin', 'blog'));
 
 /**
  * Initiate Twig, and register to Flight
@@ -37,5 +37,6 @@ Flight::path(dirname(__FILE__) . '/repositories');
  */
 include dirname(__FILE__) . '/routes.php';
 include dirname(__FILE__) . '/routes_admin.php';
+include dirname(__FILE__) . '/routes_user.php';
 
 Flight::start();
