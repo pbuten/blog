@@ -1,6 +1,7 @@
 <?php
 namespace controllers;
 
+use entity\User;
 use Flight;
 
 class RegisterController
@@ -18,7 +19,12 @@ class RegisterController
 		}
 
 		if (!ValidateData::validate($email, $password)) {
-			echo 'Can not create a new user';
+			echo "Can not create a new user - data isn't valid.";
+			return false;
+		}
+
+		if (!ValidateData::emailCheck($email)) {
+			echo "Can not create a new user - this email is in use.";
 			return false;
 		}
 
@@ -29,5 +35,7 @@ class RegisterController
 
 		$GLOBALS['$entityManager']->persist($user);
 		$GLOBALS['$entityManager']->flush();
+		Flight::view()->display('user/registered.php', []);
+
 	}
 }

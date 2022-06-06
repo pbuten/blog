@@ -13,7 +13,7 @@ class FileController
 		} else {
 			echo 'no file';
 		}
-		Flight::view()->display('user/fotoupload.php', []);
+		Flight::view()->display('user/fotoupload.php', ['isAuth' => UserController::isAuth()]);
 	}
 
 	protected static function uploadFile($file)
@@ -38,7 +38,6 @@ class FileController
 			mkdir($dirPath, 0777, true);
 		}
 		$dirPath = 'media/uploads/' . $_SESSION['id'] . '/*';
-//		array_map('unlink', glob($dirPath . "*"));
 		$files = glob($dirPath); // get all file names
 		foreach($files as $file){ // iterate files
 			if(is_file($file)) {

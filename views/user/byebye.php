@@ -8,7 +8,7 @@
 				<div class="card-body">
 					<h2>See you later!</h2>
 					<a href="/">Go home!</a>
-					<a href="/auth/login">Log in</a>
+					<a href="/login">Log in</a>
 				</div>
 			</div>
 		</div>

@@ -25,4 +25,14 @@ class ValidateData
 		return $value;
 	}
 
+	public static function emailCheck($email)
+	{
+		$newUser = ($GLOBALS['$entityManager']->getRepository('entity\User')->findOneby(['email' => $email]));
+		if ($newUser != null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 }
